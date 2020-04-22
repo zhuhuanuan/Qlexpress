@@ -1,0 +1,96 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+//apply plugin: 'findbugs'
+compileJava.options.encoding = 'UTF-8'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext.projectName = "$name"
+
+repositories {
+
+	maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+	jcenter()
+}
+
+dependencies {
+
+
+
+    compile group: 'io.netty', name: 'netty-all', version: '4.1.24.Final'
+
+    compile group: 'ch.qos.logback', name: 'logback-core', version: '1.2.3'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.58'
+    compile group: 'org.javassist', name: 'javassist', version: '3.23.1-GA'
+
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
+    compile group: 'commons-codec', name: 'commons-codec', version: '1.11'
+    compile group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.3'
+    compile group: 'commons-net', name: 'commons-net', version: '3.6'
+    compile group: 'com.googlecode.concurrentlinkedhashmap', name: 'concurrentlinkedhashmap-lru', version: '1.4.2'
+
+    compile group: 'org.quartz-scheduler', name: 'quartz', version: '2.3.0'
+
+    compile 'org.mongodb:mongo-java-driver:3.4.0'
+    compile group: 'redis.clients', name: 'jedis', version: '3.0.0'
+    compile group: 'org.codehaus.groovy', name: 'groovy-all', version: '2.4.15'
+    compile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.redisson', name: 'redisson', version: '3.11.2'
+
+    compile group: 'org.apache.kafka', name: 'kafka_2.12', version: '2.3.1'
+    compile group: 'com.typesafe.akka', name: 'akka-actor_2.12', version: '2.5.21'
+
+    compile group: 'cglib', name: 'cglib', version: '3.3.0'
+	// https://mvnrepository.com/artifact/com.google.guava/guava
+	compile group: 'com.google.guava', name: 'guava', version: '23.0'
+//    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+ //   testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
+    testCompileOnly 'org.projectlombok:lombok:1.18.2'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+// findbugs
+/*tasks.withType(FindBugs) {
+	ignoreFailures = true
+	reports {
+		xml.enabled = false
+		html.enabled = true
+	}
+	reportLevel = "high"
+}*/
+
+sourceSets.main.java.srcDirs =['src/main/java','src/main/resources']
+
+//清除上次的编译过的文件
+task clearPj(type: Delete) { delete 'build'}
+
+tasks.withType(JavaCompile) { options.encoding = "UTF-8" }
+
+jar {
+    exclude '*.properties'
+    exclude '*.groovy'
+    String someString = ''
+    configurations.runtime.each {someString = someString + " . lib//"+it.name}
+    manifest {
+        attributes 'Main-Class': 'com.cloud.gold.app.GoldKafkaApp'
+        attributes 'Class-Path': someString
+    }
+
+}
+
+task copyJar(type:Copy){
+    from configurations.runtime
+    into ('build/libs/lib')
+}
+
+//把JAR复制到目标目录
+task release(type: Copy,dependsOn: [jar,copyJar]) {
+    from 'src/main/resources'
+    into ('build/libs/') // 目标位置
+}
