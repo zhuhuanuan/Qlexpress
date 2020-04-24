@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.liu.yue.xin.chen.qlexpress.poker.operator.PokerRule;
 import com.liu.yue.xin.chen.qlexpress.poker.scanner.task.BaseScanTask;
-import com.liu.yue.xin.chen.qlexpress.xmlUtil.XmlExpress;
+import com.liu.yue.xin.chen.qlexpress.xmlUtil.PokerXmlExpress;
 
 /**
  * 三公任务组
@@ -16,6 +16,6 @@ import com.liu.yue.xin.chen.qlexpress.xmlUtil.XmlExpress;
 public class SanGongTask extends BaseScanTask {
 	@Override
 	protected List<PokerRule> getRules() {
-		return XmlExpress.getRulesByType("三公");
+		return PokerXmlExpress.getRulesByType("三公");
 	}
 }

@@ -7,7 +7,7 @@ import com.liu.yue.xin.chen.qlexpress.poker.ProkerCombo;
 import com.liu.yue.xin.chen.qlexpress.poker.module.Poker;
 import com.liu.yue.xin.chen.qlexpress.poker.scanner.ExpressScanner;
 import com.liu.yue.xin.chen.qlexpress.poker.scanner.groupTask.ProkerTaskGroud;
-import com.liu.yue.xin.chen.qlexpress.xmlUtil.XmlExpress;
+import com.liu.yue.xin.chen.qlexpress.xmlUtil.PokerXmlExpress;
 
 /**
  * 规则测试
@@ -19,7 +19,7 @@ import com.liu.yue.xin.chen.qlexpress.xmlUtil.XmlExpress;
 public class QlexpressTest {
 
 	public static void main(String[] args) {
-		XmlExpress.init();
+		PokerXmlExpress.init();
 		System.err.println("规则加载");
 		Poker.init();
 

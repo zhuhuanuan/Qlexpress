@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.liu.yue.xin.chen.qlexpress.poker.operator.PokerRule;
 import com.liu.yue.xin.chen.qlexpress.poker.scanner.task.BaseScanTask;
-import com.liu.yue.xin.chen.qlexpress.xmlUtil.XmlExpress;
+import com.liu.yue.xin.chen.qlexpress.xmlUtil.PokerXmlExpress;
 
 /**
  * 百家乐扫描任务组
@@ -17,7 +17,7 @@ public class BaiJiaLeScanTask extends BaseScanTask {
 
 	@Override
 	protected List<PokerRule> getRules() {
-		return XmlExpress.getRulesByType("百家乐");
+		return PokerXmlExpress.getRulesByType("百家乐");
 	}
 
 }

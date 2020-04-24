@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.liu.yue.xin.chen.qlexpress.poker.operator.PokerRule;
 import com.liu.yue.xin.chen.qlexpress.poker.scanner.task.BaseScanTask;
-import com.liu.yue.xin.chen.qlexpress.xmlUtil.XmlExpress;
+import com.liu.yue.xin.chen.qlexpress.xmlUtil.PokerXmlExpress;
 
 /**
  * 牛牛任务组
@@ -17,6 +17,6 @@ public class NiuNiuScanTask extends BaseScanTask {
 
 	@Override
 	protected List<PokerRule> getRules() {
-		return XmlExpress.getRulesByType("牛牛");
+		return PokerXmlExpress.getRulesByType("牛牛");
 	}
 }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+	<properties alwaysScanHu="true" />
+
+	<!-- 麻将算法 -->
+	<rule type="" name="" id="1" rate="">
+		排序麻将组合=麻将排序(手牌);排序麻将组合.size() 等于 -1
+	</rule>
+	
+	
+	
+</rules>

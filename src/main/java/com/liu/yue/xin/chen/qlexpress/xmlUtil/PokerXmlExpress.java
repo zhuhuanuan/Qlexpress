@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  * @Author 六月星辰 2020年4月22日
  */
 @Slf4j
-public class XmlExpress {
+public class PokerXmlExpress {
 	private static final String EXPRESS_FILE_PATH = "pokerExpress.xml";
 
 	private static Map<String, List<PokerRule>> rulesByType = new ConcurrentHashMap<>();
